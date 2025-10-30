@@ -3,97 +3,225 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IA Pele — Demo</title>
+  <title>IA Pele — Plataforma de Inteligência Dermatológica</title>
   <style>
-    :root {
-      --bg:#0b0f17; --card:#121826; --muted:#8692a6; --text:#e8eefc;
+    :root{
+      --bg:#0b0f17; --bg2:#0e1422; --card:#101728; --card2:#131c2e;
+      --line:#22304e; --muted:#8ea0bf; --text:#e8eefc;
       --brand1:#6A5DF5; --brand2:#C47CFD; --brand3:#F9A57C; --brand4:#FFD7A6;
+      --radius:16px;
     }
     *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(180deg,#0b0f17, #0e1422);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
-    .wrap{max-width:1120px;margin:0 auto;padding:24px}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}
+    html,body{margin:0;height:100%;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--text);font:15.5px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    a{text-decoration:none;color:inherit}
+
+    /* Header */
+    .header{position:sticky;top:0;z-index:40;background:rgba(11,15,23,.7);backdrop-filter:saturate(120%) blur(10px);border-bottom:1px solid rgba(34,48,78,.6)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
     .badge{width:22px;height:22px;border-radius:50%;
-      background: conic-gradient(from 210deg, var(--brand1), var(--brand2), var(--brand3), var(--brand4)); box-shadow:0 0 18px rgba(196,124,253,.35)}
-    .nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:10px}
-    .nav a:hover{background:#1b2336;color:var(--text)}
+      background:conic-gradient(from 210deg,var(--brand1),var(--brand2),var(--brand3),var(--brand4));
+      box-shadow:0 0 18px rgba(196,124,253,.35)}
+    .menu{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .link{padding:9px 12px;border-radius:12px;color:var(--muted)}
+    .link:hover{background:#1b2336;color:var(--text)}
     .cta{padding:10px 16px;border-radius:12px;border:1px solid #2a3550;background:#1a2235;color:#fff;cursor:pointer}
     .cta:hover{filter:brightness(1.08)}
-    .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center;padding:28px 0}
-    .h1{font-size:clamp(28px,4.2vw,44px);margin:0 0 8px}
+    .cta.primary{border:1px solid #3a47ff;background:linear-gradient(90deg,var(--brand1),var(--brand2));box-shadow:0 8px 24px rgba(106,93,245,.25)}
+    .cta.ghost{background:#151d31;border-color:#2a3550}
+
+    /* Hero */
+    .hero{padding:56px 0 28px;display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center}
+    .h1{font-size:clamp(28px,4.2vw,44px);margin:0 0 10px}
     .grad{background:linear-gradient(90deg,var(--brand1),var(--brand2),var(--brand3),var(--brand4));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .lead{color:var(--muted);margin:0 0 18px}
-    .card{background:rgba(255,255,255,.03);border:1px solid #222e48;border-radius:16px;padding:18px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .footer{color:#6f7a90;margin-top:28px;font-size:14px}
+    .lead{color:var(--muted);margin:0 0 20px}
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap}
+
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.02));
+      border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+    .shadow{box-shadow:0 20px 70px rgba(0,0,0,.45)}
+
+    /* Sections */
+    .section{padding:26px 0}
+    .section h3{margin:0 0 10px}
+    .muted{color:var(--muted)}
+
+    /* Blocks (LP moderna) */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .feature{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:8px}
+    .feature .icon{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,rgba(106,93,245,.3),rgba(196,124,253,.25));display:flex;align-items:center;justify-content:center}
+
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .list{display:grid;gap:10px}
+    .li{display:flex;gap:10px;align-items:flex-start}
+    .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,var(--brand3),var(--brand4));margin-top:7px}
+
+    /* Stats band */
+    .band{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .stat{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+    .stat .n{font-weight:800;font-size:20px}
+
+    /* How it works */
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .step{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+    .pill{display:inline-block;font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid #314064;background:#121a2c;color:#c7d4ff;margin-bottom:8px}
+
+    /* Footer */
+    .footer{color:#6f7a90;margin:28px 0;font-size:14px;border-top:1px solid var(--line);padding-top:16px}
 
     /* Modal */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(5,8,13,.72);backdrop-filter:saturate(120%) blur(8px);z-index:50}
     .modal[open]{display:flex}
-    .sheet{width:min(1100px,95vw);height:min(780px,90vh);background:var(--card);border:1px solid #22304e;border-radius:18px;box-shadow:0 30px 120px rgba(0,0,0,.5);display:flex;flex-direction:column;overflow:hidden}
-    .sheet-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid #22304e;background:#0e1524}
+    .sheet{width:min(1100px,95vw);height:min(780px,90vh);background:var(--card2);border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 120px rgba(0,0,0,.5);display:flex;flex-direction:column;overflow:hidden}
+    .sheet-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--line);background:#0e1524}
     .sheet-title{display:flex;align-items:center;gap:10px;font-weight:700}
     .close{appearance:none;border:1px solid #2a3550;border-radius:10px;background:#151d31;color:#cbd6f1;padding:8px 12px;cursor:pointer}
     .close:hover{background:#1a2440}
     .sheet-body{flex:1}
     .demo-frame{width:100%;height:100%;border:0}
-    @media (max-width:900px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr 1fr}
+      .steps{grid-template-columns:1fr}
+      .band{grid-template-columns:1fr 1fr}
+      .grid-2{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      .features{grid-template-columns:1fr}
+      .cta-row{flex-direction:column}
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <nav class="nav">
-      <div class="brand">
-        <span class="badge" aria-hidden="true"></span>
-        <span>IA Pele</span>
-      </div>
-      <div>
-        <a href="#beneficios">Benefícios</a>
-        <a href="#como-funciona">Como funciona</a>
-        <button class="cta" id="openDemo">Abrir Demo</button>
-      </div>
-    </nav>
-
-    <section class="hero">
-      <div>
-        <h1 class="h1">Dermatologia com <span class="grad">inteligência clínica</span></h1>
-        <p class="lead">Assistente médico para médicos. Conteúdo técnico, protocolos e gestão em um só lugar.</p>
-        <div style="display:flex;gap:10px">
-          <button class="cta" id="openDemo2">Ver Demo agora</button>
-          <a class="nav" href="mailto:contato@iapele.com">Falar com a equipe</a>
+  <!-- Header -->
+  <header class="header">
+    <div class="wrap">
+      <nav class="nav">
+        <div class="brand">
+          <span class="badge" aria-hidden="true"></span>
+          <span>IA Pele</span>
         </div>
-      </div>
-      <div class="card">
-        <div style="font-weight:600;margin-bottom:8px">Destaques</div>
-        <div class="grid">
-          <div class="card">Bioestimuladores e HA</div>
-          <div class="card">Laser, RF e HIFU</div>
-          <div class="card">Gestão e indicadores</div>
+        <div class="menu">
+          <a class="link" href="#beneficios">Benefícios</a>
+          <a class="link" href="#modulos">Módulos</a>
+          <a class="link" href="#como-funciona">Como funciona</a>
+          <!-- CTA unificado no topo -->
+          <button class="cta primary" id="openDemoTop">Abrir Demo</button>
+          <a class="cta ghost" href="mailto:contato@iapele.com">Falar com a equipe</a>
         </div>
-      </div>
-    </section>
+      </nav>
+    </div>
+  </header>
 
-    <section id="beneficios" class="card" style="margin-top:10px">
-      <h3 style="margin:0 0 6px">Benefícios</h3>
-      <ul>
-        <li>Respostas técnicas com base científica</li>
-        <li>Fluxos de gestão aplicáveis à clínica</li>
-        <li>Preparado para multi-especialidades</li>
-      </ul>
-    </section>
+  <main>
+    <div class="wrap">
+      <!-- Hero -->
+      <section class="hero">
+        <div>
+          <h1 class="h1">Dermatologia com <span class="grad">inteligência clínica</span></h1>
+          <p class="lead">Assistente médico para médicos. Respostas técnicas, protocolos e gestão clínica em um só lugar.</p>
+          <div class="cta-row">
+            <button class="cta primary" id="openDemoHero">Ver Demo agora</button>
+            <a class="cta ghost" href="#modulos">Ver Módulos</a>
+          </div>
+        </div>
+        <div class="card shadow">
+          <div class="features">
+            <div class="feature">
+              <div class="icon">🧬</div>
+              <b>Bioestimuladores & HA</b>
+              <div class="muted">Protocolos e fundamentos histológicos com foco em segurança.</div>
+            </div>
+            <div class="feature">
+              <div class="icon">⚡</div>
+              <b>Laser, RF e HIFU</b>
+              <div class="muted">Parâmetros, combinações e manejo por fototipo.</div>
+            </div>
+            <div class="feature">
+              <div class="icon">📊</div>
+              <b>Gestão & Indicadores</b>
+              <div class="muted">Rotas de operação, experiência do paciente e ROI clínico.</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <section id="como-funciona" class="card" style="margin-top:10px">
-      <h3 style="margin:0 0 6px">Como funciona</h3>
-      <ol>
-        <li>Subimos conhecimento científico</li>
-        <li>Conectamos ao agente IA</li>
-        <li>Você testa no Demo e valida</li>
-      </ol>
-    </section>
+      <!-- Band de stats -->
+      <section class="section">
+        <div class="band">
+          <div class="stat"><div class="n">+40 anos</div><div class="muted">de prática e liderança</div></div>
+          <div class="stat"><div class="n">10 eixos</div><div class="muted">científicos integrados</div></div>
+          <div class="stat"><div class="n">Multi-IA</div><div class="muted">pronto para expansão</div></div>
+          <div class="stat"><div class="n">Segurança</div><div class="muted">ética e clínica</div></div>
+        </div>
+      </section>
 
-    <p class="footer">© IA Pele. Plataforma de inteligência dermatológica.</p>
-  </div>
+      <!-- Módulos -->
+      <section id="modulos" class="section">
+        <h3>Módulos da plataforma</h3>
+        <div class="grid-2">
+          <div class="card">
+            <b>Ciência e prática clínica</b>
+            <div class="list">
+              <div class="li"><span class="dot"></span><div>Bioestimuladores, AH, toxina, cosmiatria</div></div>
+              <div class="li"><span class="dot"></span><div>Laser, RF, HIFU e protocolos combinados</div></div>
+              <div class="li"><span class="dot"></span><div>Acne, rosácea, hiperpigmentações</div></div>
+              <div class="li"><span class="dot"></span><div>Diretrizes AAD/EADV/SBD</div></div>
+            </div>
+          </div>
+          <div class="card">
+            <b>Gestão e estratégia</b>
+            <div class="list">
+              <div class="li"><span class="dot"></span><div>Experiência do paciente e precificação por valor</div></div>
+              <div class="li"><span class="dot"></span><div>Indicadores: ticket, recompra, ROI clínico</div></div>
+              <div class="li"><span class="dot"></span><div>Playbooks de marketing médico ético</div></div>
+              <div class="li"><span class="dot"></span><div>Operação e previsibilidade com IA</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Como funciona -->
+      <section id="como-funciona" class="section">
+        <h3>Como funciona</h3>
+        <div class="steps">
+          <div class="step">
+            <span class="pill">1</span>
+            <b>Carregamos conhecimento científico</b>
+            <div class="muted">Documentos, diretrizes e revisões open-access.</div>
+          </div>
+          <div class="step">
+            <span class="pill">2</span>
+            <b>Orquestramos o agente IA</b>
+            <div class="muted">Prompt médico, segurança e filtros de resposta.</div>
+          </div>
+          <div class="step">
+            <span class="pill">3</span>
+            <b>Validação no Demo</b>
+            <div class="muted">Cenários clínicos, linguagem técnica e ética.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA final -->
+      <section class="section">
+        <div class="card shadow" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+          <div>
+            <b>Pronto para ver na prática?</b>
+            <div class="muted">Abra o Demo em modo janela ou fale com a equipe para o plano de implantação.</div>
+          </div>
+          <div style="display:flex;gap:10px">
+            <button class="cta primary" id="openDemoBottom">Abrir Demo</button>
+            <a class="cta ghost" href="mailto:contato@iapele.com">Falar com a equipe</a>
+          </div>
+        </div>
+      </section>
+
+      <p class="footer">© IA Pele — Plataforma de inteligência dermatológica. Todos os direitos reservados.</p>
+    </div>
+  </main>
 
   <!-- Modal Demo -->
   <dialog class="modal" id="demoModal" aria-label="Janela de demonstração IA Pele">
@@ -122,12 +250,16 @@
 
   <script>
     const modal = document.getElementById('demoModal');
-    const openBtns = [document.getElementById('openDemo'), document.getElementById('openDemo2')];
+    const openBtns = [
+      document.getElementById('openDemoTop'),
+      document.getElementById('openDemoHero'),
+      document.getElementById('openDemoBottom')
+    ];
     const closeBtn = document.getElementById('closeDemo');
 
     openBtns.forEach(btn => btn && btn.addEventListener('click', () => {
       if (typeof modal.showModal === 'function') modal.showModal();
-      else modal.setAttribute('open',''); // fallback
+      else modal.setAttribute('open','');
       document.body.style.overflow='hidden';
     }));
 
@@ -136,7 +268,6 @@
       document.body.style.overflow='';
     });
 
-    // Fecha com ESC e clique fora
     modal.addEventListener('cancel', (e)=>{ e.preventDefault(); modal.close(); document.body.style.overflow=''; });
     modal.addEventListener('click', (e)=>{
       const sheet = modal.querySelector('.sheet');
