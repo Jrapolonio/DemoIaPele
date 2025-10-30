@@ -19,10 +19,8 @@
     /* Header */
     .header{position:sticky;top:0;z-index:40;background:rgba(11,15,23,.7);backdrop-filter:saturate(120%) blur(10px);border-bottom:1px solid rgba(34,48,78,.6)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
-    .badge{width:22px;height:22px;border-radius:50%;
-      background:conic-gradient(from 210deg,var(--brand1),var(--brand2),var(--brand3),var(--brand4));
-      box-shadow:0 0 18px rgba(196,124,253,.35)}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img{height:30px; display:block}
     .menu{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
     .link{padding:9px 12px;border-radius:12px;color:var(--muted)}
     .link:hover{background:#1b2336;color:var(--text)}
@@ -47,28 +45,33 @@
     .section h3{margin:0 0 10px}
     .muted{color:var(--muted)}
 
-    /* Blocks (LP moderna) */
-    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .feature{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:8px}
-    .feature .icon{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,rgba(106,93,245,.3),rgba(196,124,253,.25));display:flex;align-items:center;justify-content:center}
+    /* Áreas de domínio (novo bloco 3×2) */
+    .domains{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .domain{
+      background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.02));
+      border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+      display:flex;flex-direction:column;gap:10px;min-height:160px
+    }
+    .domain .head{display:flex;align-items:center;gap:10px}
+    .ico{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;
+         background:linear-gradient(135deg,rgba(106,93,245,.3),rgba(196,124,253,.25))}
+    .domain b{font-size:15.5px}
+    .domain ul{margin:0;padding-left:18px;color:var(--muted)}
+    .domain li{margin:4px 0}
 
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .list{display:grid;gap:10px}
-    .li{display:flex;gap:10px;align-items:flex-start}
-    .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,var(--brand3),var(--brand4));margin-top:7px}
-
-    /* Stats band */
+    /* Band */
     .band{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
     .stat{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
     .stat .n{font-weight:800;font-size:20px}
 
-    /* How it works */
+    /* Steps */
     .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .step{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
     .pill{display:inline-block;font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid #314064;background:#121a2c;color:#c7d4ff;margin-bottom:8px}
 
     /* Footer */
-    .footer{color:#6f7a90;margin:28px 0;font-size:14px;border-top:1px solid var(--line);padding-top:16px}
+    .footer{color:#6f7a90;margin:28px 0;font-size:14px;border-top:1px solid var(--line);padding-top:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .footer .brand img{height:26px}
 
     /* Modal */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(5,8,13,.72);backdrop-filter:saturate(120%) blur(8px);z-index:50}
@@ -83,13 +86,12 @@
 
     @media (max-width:980px){
       .hero{grid-template-columns:1fr}
-      .features{grid-template-columns:1fr 1fr}
+      .domains{grid-template-columns:1fr 1fr}
       .steps{grid-template-columns:1fr}
       .band{grid-template-columns:1fr 1fr}
-      .grid-2{grid-template-columns:1fr}
     }
     @media (max-width:640px){
-      .features{grid-template-columns:1fr}
+      .domains{grid-template-columns:1fr}
       .cta-row{flex-direction:column}
     }
   </style>
@@ -100,14 +102,12 @@
     <div class="wrap">
       <nav class="nav">
         <div class="brand">
-          <span class="badge" aria-hidden="true"></span>
-          <span>IA Pele</span>
+          <img src="assets/logo-ia-pele.png" alt="IA Pele" />
         </div>
         <div class="menu">
           <a class="link" href="#beneficios">Benefícios</a>
-          <a class="link" href="#modulos">Módulos</a>
+          <a class="link" href="#dominios">Áreas de domínio</a>
           <a class="link" href="#como-funciona">Como funciona</a>
-          <!-- CTA unificado no topo -->
           <button class="cta primary" id="openDemoTop">Abrir Demo</button>
           <a class="cta ghost" href="mailto:contato@iapele.com">Falar com a equipe</a>
         </div>
@@ -124,61 +124,83 @@
           <p class="lead">Assistente médico para médicos. Respostas técnicas, protocolos e gestão clínica em um só lugar.</p>
           <div class="cta-row">
             <button class="cta primary" id="openDemoHero">Ver Demo agora</button>
-            <a class="cta ghost" href="#modulos">Ver Módulos</a>
+            <a class="cta ghost" href="#dominios">Ver Áreas de domínio</a>
           </div>
         </div>
         <div class="card shadow">
-          <div class="features">
-            <div class="feature">
-              <div class="icon">🧬</div>
-              <b>Bioestimuladores & HA</b>
-              <div class="muted">Protocolos e fundamentos histológicos com foco em segurança.</div>
-            </div>
-            <div class="feature">
-              <div class="icon">⚡</div>
-              <b>Laser, RF e HIFU</b>
-              <div class="muted">Parâmetros, combinações e manejo por fototipo.</div>
-            </div>
-            <div class="feature">
-              <div class="icon">📊</div>
-              <b>Gestão & Indicadores</b>
-              <div class="muted">Rotas de operação, experiência do paciente e ROI clínico.</div>
-            </div>
+          <h3 style="margin:0 0 8px">Destaques</h3>
+          <div class="band">
+            <div class="stat"><div class="n">+40 anos</div><div class="muted">de prática e liderança</div></div>
+            <div class="stat"><div class="n">10 eixos</div><div class="muted">científicos integrados</div></div>
+            <div class="stat"><div class="n">Multi-IA</div><div class="muted">pronto para expansão</div></div>
+            <div class="stat"><div class="n">Segurança</div><div class="muted">ética e clínica</div></div>
           </div>
         </div>
       </section>
 
-      <!-- Band de stats -->
-      <section class="section">
-        <div class="band">
-          <div class="stat"><div class="n">+40 anos</div><div class="muted">de prática e liderança</div></div>
-          <div class="stat"><div class="n">10 eixos</div><div class="muted">científicos integrados</div></div>
-          <div class="stat"><div class="n">Multi-IA</div><div class="muted">pronto para expansão</div></div>
-          <div class="stat"><div class="n">Segurança</div><div class="muted">ética e clínica</div></div>
-        </div>
-      </section>
-
-      <!-- Módulos -->
-      <section id="modulos" class="section">
-        <h3>Módulos da plataforma</h3>
-        <div class="grid-2">
-          <div class="card">
-            <b>Ciência e prática clínica</b>
-            <div class="list">
-              <div class="li"><span class="dot"></span><div>Bioestimuladores, AH, toxina, cosmiatria</div></div>
-              <div class="li"><span class="dot"></span><div>Laser, RF, HIFU e protocolos combinados</div></div>
-              <div class="li"><span class="dot"></span><div>Acne, rosácea, hiperpigmentações</div></div>
-              <div class="li"><span class="dot"></span><div>Diretrizes AAD/EADV/SBD</div></div>
+      <!-- Áreas de domínio (harmonizado 3×2) -->
+      <section id="dominios" class="section">
+        <h3>Áreas de domínio</h3>
+        <div class="domains">
+          <div class="domain">
+            <div class="head">
+              <div class="ico">🧬</div><b>Bioestimuladores & HA</b>
             </div>
+            <ul>
+              <li>PLLA, CaHA, PCL — neocolagênese e segurança</li>
+              <li>Reologia do AH por plano anatômico</li>
+              <li>Protocolos combinados e hialuronidase</li>
+            </ul>
           </div>
-          <div class="card">
-            <b>Gestão e estratégia</b>
-            <div class="list">
-              <div class="li"><span class="dot"></span><div>Experiência do paciente e precificação por valor</div></div>
-              <div class="li"><span class="dot"></span><div>Indicadores: ticket, recompra, ROI clínico</div></div>
-              <div class="li"><span class="dot"></span><div>Playbooks de marketing médico ético</div></div>
-              <div class="li"><span class="dot"></span><div>Operação e previsibilidade com IA</div></div>
+          <div class="domain">
+            <div class="head">
+              <div class="ico">⚡</div><b>Laser, RF & HIFU</b>
             </div>
+            <ul>
+              <li>Ablativo × não ablativo; parâmetros por fototipo</li>
+              <li>Remodelação dérmica e sinergia com bioestímulo</li>
+              <li>Rotina de manutenção e ROI por tecnologia</li>
+            </ul>
+          </div>
+          <div class="domain">
+            <div class="head">
+              <div class="ico">🧪</div><b>Cosmiatria & Peelings</b>
+            </div>
+            <ul>
+              <li>Glicólico, retinoico, TCA e drug delivery</li>
+              <li>Integração com luz/laser e home care médico</li>
+              <li>Linhas dermocosméticas e fidelização</li>
+            </ul>
+          </div>
+          <div class="domain">
+            <div class="head">
+              <div class="ico">🩺</div><b>Acne, Rosácea & Inflamação</b>
+            </div>
+            <ul>
+              <li>Retinoides, ATB, probióticos e fototerapia</li>
+              <li>Planos longitudinais e adesão digital</li>
+              <li>Critérios de escalonamento terapêutico</li>
+            </ul>
+          </div>
+          <div class="domain">
+            <div class="head">
+              <div class="ico">🎯</div><b>Hiperpigmentações & Melasma</b>
+            </div>
+            <ul>
+              <li>Ácido tranexâmico; antioxidantes e fotoproteção</li>
+              <li>Estratégias multimodais por perfil e estação</li>
+              <li>Seguimento e manutenção anual</li>
+            </ul>
+          </div>
+          <div class="domain">
+            <div class="head">
+              <div class="ico">📊</div><b>Gestão & Experiência</b>
+            </div>
+            <ul>
+              <li>Ticket, recompra, ROI clínico e previsibilidade</li>
+              <li>Jornada do paciente e comunicação ética</li>
+              <li>Operação com IA e padronização de protocolos</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -210,7 +232,7 @@
         <div class="card shadow" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
           <div>
             <b>Pronto para ver na prática?</b>
-            <div class="muted">Abra o Demo em modo janela ou fale com a equipe para o plano de implantação.</div>
+            <div class="muted">Abra o Demo em modo janela ou fale com a equipe para implantação.</div>
           </div>
           <div style="display:flex;gap:10px">
             <button class="cta primary" id="openDemoBottom">Abrir Demo</button>
@@ -219,7 +241,12 @@
         </div>
       </section>
 
-      <p class="footer">© IA Pele — Plataforma de inteligência dermatológica. Todos os direitos reservados.</p>
+      <div class="footer">
+        <div class="brand">
+          <img src="assets/logo-ia-pele.png" alt="IA Pele" />
+        </div>
+        <div>© IA Pele — Plataforma de inteligência dermatológica.</div>
+      </div>
     </div>
   </main>
 
@@ -228,17 +255,15 @@
     <div class="sheet" role="document">
       <div class="sheet-header">
         <div class="sheet-title">
-          <span class="badge" aria-hidden="true"></span>
-          <span>IA Pele — Demo</span>
+          <img src="assets/logo-ia-pele.png" alt="IA Pele" style="height:22px" />
         </div>
         <div style="display:flex;gap:8px">
-          <a class="close" id="openNewTab" href="https://udify.app/chatbot/A6i3Y7me3IQuToI7?embed=true" target="_blank" rel="noopener">Abrir em nova aba</a>
+          <a class="close" href="https://udify.app/chatbot/A6i3Y7me3IQuToI7?embed=true" target="_blank" rel="noopener">Abrir em nova aba</a>
           <button class="close" id="closeDemo" aria-label="Fechar">Fechar (Esc)</button>
         </div>
       </div>
       <div class="sheet-body">
         <iframe
-          id="demoFrame"
           class="demo-frame"
           src="https://udify.app/chatbot/A6i3Y7me3IQuToI7?embed=true"
           allow="microphone"
