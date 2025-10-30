@@ -20,7 +20,7 @@
     .header{position:sticky;top:0;z-index:40;background:rgba(11,15,23,.7);backdrop-filter:saturate(120%) blur(10px);border-bottom:1px solid rgba(34,48,78,.6)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
     .brand{display:flex;align-items:center;gap:10px}
-    .brand img{height:30px; display:block}
+    .brand img{height:32px;width:auto;display:block}
     .menu{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
     .link{padding:9px 12px;border-radius:12px;color:var(--muted)}
     .link:hover{background:#1b2336;color:var(--text)}
@@ -45,7 +45,7 @@
     .section h3{margin:0 0 10px}
     .muted{color:var(--muted)}
 
-    /* Áreas de domínio (novo bloco 3×2) */
+    /* Áreas de domínio */
     .domains{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .domain{
       background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.02));
@@ -71,14 +71,14 @@
 
     /* Footer */
     .footer{color:#6f7a90;margin:28px 0;font-size:14px;border-top:1px solid var(--line);padding-top:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    .footer .brand img{height:26px}
+    .footer .brand img{height:28px;width:auto;display:block}
 
     /* Modal */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(5,8,13,.72);backdrop-filter:saturate(120%) blur(8px);z-index:50}
     .modal[open]{display:flex}
     .sheet{width:min(1100px,95vw);height:min(780px,90vh);background:var(--card2);border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 120px rgba(0,0,0,.5);display:flex;flex-direction:column;overflow:hidden}
     .sheet-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--line);background:#0e1524}
-    .sheet-title{display:flex;align-items:center;gap:10px;font-weight:700}
+    .sheet-title img{height:22px;width:auto;display:block}
     .close{appearance:none;border:1px solid #2a3550;border-radius:10px;background:#151d31;color:#cbd6f1;padding:8px 12px;cursor:pointer}
     .close:hover{background:#1a2440}
     .sheet-body{flex:1}
@@ -102,7 +102,7 @@
     <div class="wrap">
       <nav class="nav">
         <div class="brand">
-          <img src="assets/logo-ia-pele.png" alt="IA Pele" />
+          <img src="./logo-ia-pele.png" alt="IA Pele" />
         </div>
         <div class="menu">
           <a class="link" href="#beneficios">Benefícios</a>
@@ -138,7 +138,7 @@
         </div>
       </section>
 
-      <!-- Áreas de domínio (harmonizado 3×2) -->
+      <!-- Áreas de domínio -->
       <section id="dominios" class="section">
         <h3>Áreas de domínio</h3>
         <div class="domains">
@@ -243,7 +243,7 @@
 
       <div class="footer">
         <div class="brand">
-          <img src="assets/logo-ia-pele.png" alt="IA Pele" />
+          <img src="./logo-ia-pele.png" alt="IA Pele" />
         </div>
         <div>© IA Pele — Plataforma de inteligência dermatológica.</div>
       </div>
@@ -255,7 +255,7 @@
     <div class="sheet" role="document">
       <div class="sheet-header">
         <div class="sheet-title">
-          <img src="assets/logo-ia-pele.png" alt="IA Pele" style="height:22px" />
+          <img src="./logo-ia-pele.png" alt="IA Pele" />
         </div>
         <div style="display:flex;gap:8px">
           <a class="close" href="https://udify.app/chatbot/A6i3Y7me3IQuToI7?embed=true" target="_blank" rel="noopener">Abrir em nova aba</a>
